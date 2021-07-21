@@ -1,0 +1,26 @@
+server:
+  port: 8090
+
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: sector-service
+          uri: http://localhost:8083/
+          predicates:
+            - Path=/sector/**
+
+        - id: stock-exchange-service
+          uri: http://localhost:8082
+          predicates:
+            - Path=/stockExchange/**
+
+        - id: company-service
+          uri: http://localhost:8081
+          predicates:
+            - Path=/company/**
+
+        - id: upload-excel-service
+          uri: http://localhost:8084
+          predicates:
+            - Path=/upload/**
