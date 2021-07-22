@@ -2,7 +2,9 @@ package com.ud.userservice.services;
 
 import com.ud.userservice.entities.User;
 import com.ud.userservice.repositories.UserRepository;
+import com.ud.userservice.security.Jwt;
 import com.ud.userservice.security.Password;
+import io.jsonwebtoken.Claims;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,15 +23,18 @@ public class UserService {
 
     public String login(String username, String password) {
         User storedUser = this.userRepository.findUserByUsername(username);
-//        System.out.println("yoyo");
         Boolean authenticated = Password.checkPassword(password, storedUser.getPassword());
 
         if (authenticated) {
-            return "verified";
+            return Jwt.generateToken(storedUser);
         } else {
             return null;
         }
+    }
 
+    public String authenticate(String token) {
+        Claims claims = Jwt.decodeToken(token);
+        return (claims != null) ?  Jwt.validate(claims) : "invalidToken";
     }
 
     public List<User> getUsers() {
