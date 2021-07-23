@@ -1,5 +1,6 @@
 package com.ud.gateway.components;
 
+import io.jsonwebtoken.Claims;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.cloud.gateway.filter.GatewayFilter;
@@ -34,24 +35,13 @@ public class SimpleFilter implements GatewayFilter, Ordered {
         return response.writeWith(Flux.just(buffer));
     }
 
-    private Boolean isAuthorizationValid(String token) throws URISyntaxException {
-        WebClient client = WebClient.create();
-        Mono<String> response = client.get()
-                .uri(new URI("http://localhost:8085/user/validate"))
-                .header("token", token)
-                .retrieve()
-                .bodyToMono(String.class);
-
-        return false;
-//        return response.subscribe(str -> {
-//            if (str.equals("user") || str.equals("admin")) {
-//                return true;
-//            } else {
-//                return false;
-//            }
-//        });
-//        HttpStatus status = response.getStatusCode();
-//        return (this.validationMessage.equals("user") || this.validationMessage.equals("admin")) ? true : false;
+    private Boolean isAuthorizationValid(String token) {
+        Claims claims = Jwt.decodeToken(token);
+        if (claims == null) {
+            return false;
+        }
+        String subject = Jwt.validate(claims);
+        return (subject.equals("user") || subject.equals("admin")) ? true : false;
     }
 
 
@@ -65,22 +55,12 @@ public class SimpleFilter implements GatewayFilter, Ordered {
 
         String token = request.getHeaders().getFirst("token");
 
-        try {
-            if (!this.isAuthorizationValid(token)) {
-                return this.onError(exchange, "Invalid Authorization header", HttpStatus.UNAUTHORIZED);
-            }
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
+
+        if (!this.isAuthorizationValid(token)) {
+            return this.onError(exchange, "Invalid Authorization header", HttpStatus.UNAUTHORIZED);
         }
 
         return chain.filter(exchange);
-//                .then(
-//                Mono.fromRunnable(() -> {
-//                    long startTime = exchange.getAttribute(COUNT_START_TIME);
-//                    long endTime=(Instant.now().toEpochMilli() - startTime);
-//                    log.info(exchange.getRequest().getURI().getRawPath() + ": " + endTime + "ms");
-//                })
-//        );
     }
 
     @Override
