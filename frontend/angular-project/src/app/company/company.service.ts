@@ -19,4 +19,8 @@ export class CompanyService {
   getCompanyById(companyId: number): Observable<Company> {
     return this.http.get<Company>(`${this.url}companyById?companyId=${companyId}`, this.httpOptions);
   }
+
+  getMatchingCompanyList(companyName: string): Observable<Company[]> {
+    return this.http.get<Company[]>(`${this.url}matchingCompanyList?companyName=${companyName}`, this.httpOptions);
+  }
 }

@@ -1,1 +1,10 @@
-<p>user-details works!</p>
+<div>
+    <form>
+        <p>Username: <input type="text" [(ngModel)]="user.username" placeholder="{{user.username}}" name="username"></p>
+        <p>Email: <input type="text" [(ngModel)]="user.email" placeholder="{{user.email}}" name="email"></p>
+        <p>Mobile: <input type="text" [(ngModel)]="user.mobile" placeholder="{{user.mobile}}" name="mobile"></p>
+    </form>
+    <p><button (click)="updateUser()">Update User</button></p>
+    <p><button (click)="deleteUser()">Delete User</button></p>
+    <p>{{message}}</p>
+</div>
