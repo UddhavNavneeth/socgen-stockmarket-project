@@ -44,6 +44,10 @@ public class UserService {
         return this.userRepository.findAll();
     }
 
+    public User getUserById(Long userId) {
+        return this.userRepository.findById(userId).get();
+    }
+
     public User updateUser(User user) {
         return this.userRepository.save(user);
     }

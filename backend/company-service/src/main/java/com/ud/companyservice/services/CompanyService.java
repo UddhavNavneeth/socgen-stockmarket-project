@@ -19,17 +19,12 @@ public class CompanyService {
     @Autowired
     private SectorRepository sectorRepository;
 
-    public CompanyDto getCompanyById(Long companyId) {
-        return entityToDto(this.companyRepository.findById(companyId).get());
+    public Company getCompanyById(Long companyId) {
+        return this.companyRepository.findById(companyId).get();
     }
 
-    public List<CompanyDto> getMatchingCompanyList(String companyName) {
-        List<CompanyDto> companyDtoList = new ArrayList<CompanyDto>();
-        this.companyRepository.findByNameLike(companyName + "%").forEach(company -> {
-            companyDtoList.add(entityToDto(company));
-        });
-
-        return companyDtoList;
+    public List<Company> getMatchingCompanyList(String companyName) {
+        return this.companyRepository.findByNameLike(companyName + "%");
     }
 
     // additional service methods not mentioned in project report

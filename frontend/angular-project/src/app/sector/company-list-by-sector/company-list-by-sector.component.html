@@ -1,7 +1,7 @@
 <div>
     <ul *ngIf="companyList.length">
         <li *ngFor="let company of companyList">
-            <p>{{company.name}}</p>
+            <p routerLink="/company/{{company.id}}">{{company.name}}</p>
             <p>{{company.ceo}}</p>
             <p>{{company.turnover}}</p>
             <p>{{company.brief}}</p>

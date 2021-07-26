@@ -20,13 +20,8 @@ public class SectorService {
     @Autowired
     private CompanyRepository companyRepository;
 
-    public List<CompanyDto> getCompanyListForASector(Long sectorId) {
-        List<CompanyDto> companyDtoList = new ArrayList<>();
-        this.companyRepository.findCompaniesBySector_Id(sectorId).forEach(company -> {
-            companyDtoList.add(entityToDto(company));
-        });
-
-        return companyDtoList;
+    public List<Company> getCompanyListForASector(Long sectorId) {
+        return this.companyRepository.findCompaniesBySector_Id(sectorId);
     }
 
     // additional service methods not mentioned in project report

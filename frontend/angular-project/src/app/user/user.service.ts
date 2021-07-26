@@ -25,4 +25,16 @@ export class UserService {
   login(login: Login): Observable<ServerMessage> {
     return this.http.post<ServerMessage>(`${this.url}login`, login, this.httpOptions);
   }
+
+  getUser(userId: number): Observable<User> {
+    return this.http.get<User>(`${this.url}getUserById?userId=${userId}`, this.httpOptions);
+  }
+
+  updateUser(user: User): Observable<User> {
+    return this.http.put<User>(`${this.url}`, user, this.httpOptions);
+  }
+
+  deleteUser(userId: number) {
+    return this.http.delete<void>(`${this.url}delete?userId=${userId}`, this.httpOptions);
+  }
 }

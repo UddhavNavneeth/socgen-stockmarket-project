@@ -51,7 +51,10 @@ public class UserController {
     }
 
 
-
+    @GetMapping("/getUserById")
+    public User getUserById(@RequestParam Long userId) {
+        return this.userService.getUserById(userId);
+    }
 
     @GetMapping
     public List<User> getUsers() {
@@ -63,8 +66,8 @@ public class UserController {
         return this.userService.updateUser(user);
     }
 
-    @DeleteMapping
-    public void deleteUser(Long userId) {
+    @DeleteMapping("/delete")
+    public void deleteUser(@RequestParam Long userId) {
         this.userService.deleteUser(userId);
     }
 }

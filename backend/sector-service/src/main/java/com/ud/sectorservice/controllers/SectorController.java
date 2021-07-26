@@ -18,7 +18,7 @@ public class SectorController {
     private SectorService sectorService;
 
     @GetMapping("/companyList")
-    public List<CompanyDto> getCompanyListForASector(@RequestParam Long sectorId) {
+    public List<Company> getCompanyListForASector(@RequestParam Long sectorId) {
         return this.sectorService.getCompanyListForASector(sectorId);
     }
 
