@@ -1,6 +1,7 @@
 package com.ud.userservice.controllers;
 
 import com.ud.userservice.dto.LoginDto;
+import com.ud.userservice.dto.ReturnMessage;
 import com.ud.userservice.entities.User;
 import com.ud.userservice.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,14 +26,17 @@ public class UserController {
     }
 
     @PostMapping(value="/login")
-    public ResponseEntity<String> login(@RequestBody LoginDto loginDto) {
+    public ResponseEntity<ReturnMessage> login(@RequestBody LoginDto loginDto) {
         String token = this.userService.login(loginDto.getUsername(), loginDto.getPassword());
+        ReturnMessage message = new ReturnMessage();
         if (null != token) {
             HttpHeaders responseHeaders = new HttpHeaders();
             responseHeaders.set("token",token);
-            return ResponseEntity.ok().headers(responseHeaders).body("logged in");
+            message.setMessage("logged in");
+            return ResponseEntity.ok().headers(responseHeaders).body(message);
         } else {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("invalid password");
+            message.setMessage("invalid username or password");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(message);
         }
     }
 

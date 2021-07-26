@@ -23,6 +23,9 @@ public class UserService {
 
     public String login(String username, String password) {
         User storedUser = this.userRepository.findUserByUsername(username);
+        if (storedUser == null) {
+            return null;
+        }
         Boolean authenticated = Password.checkPassword(password, storedUser.getPassword());
 
         if (authenticated) {

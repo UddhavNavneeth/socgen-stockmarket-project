@@ -3,5 +3,6 @@
         <p>username: <input type="text" [(ngModel)] = "loginBody.username" name="username"></p>
         <p>password: <input type="password" [(ngModel)] = "loginBody.password" name="password"></p>
     </form>
-    <p><button (click)="login()">login</button></p>
+    <p><button (click)="login()">login</button><button routerLink="/signup">signup</button></p>
+    <p>{{message}}</p>
 </div>

@@ -12,6 +12,7 @@ import { User } from '../../models/User';
 export class SignupComponent implements OnInit {
 
   public user: User;
+  public message: string;
 
   constructor(private userService: UserService) { 
     this.user = {
@@ -24,6 +25,7 @@ export class SignupComponent implements OnInit {
       confirmed: false
     };
 
+    this.message = '';
    }
 
   ngOnInit(): void {
@@ -32,8 +34,12 @@ export class SignupComponent implements OnInit {
   signup(): void {
     this.user.userType = "user";
     this.user.isdCode = "+91"
-    console.log(this.user);
-    this.userService.signUp(this.user).subscribe();
+    this.userService.signUp(this.user).subscribe((user) => {
+
+    }, (e) => {
+      console.log(e);
+    });
+
   }
 
 }

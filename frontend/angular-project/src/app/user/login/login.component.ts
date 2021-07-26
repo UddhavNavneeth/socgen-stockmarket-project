@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 
 import { UserService } from '../user.service';
 
 import { Login } from '../../models/Login';
-import { Observable } from 'rxjs';
+
 
 @Component({
   selector: 'app-login',
@@ -13,21 +14,25 @@ import { Observable } from 'rxjs';
 export class LoginComponent implements OnInit {
 
   loginBody: Login;
+  message: string;
 
   constructor(private userService: UserService) {
     this.loginBody = {
       username: '',
       password: ''
-    }
+    };
+
+    this.message = '';
    }
 
   ngOnInit(): void {
   }
 
   login() {
-    console.log(this.loginBody);
     this.userService.login(this.loginBody).subscribe((result) => {
-      console.log(result);
+      
+    }, (e) => {
+      this.message = e.error.message;
     })
   }
 

@@ -10,7 +10,7 @@ public class User {
     @Column(name="id", length=5)
     private Long id;
 
-    @Column(name="username", length=20)
+    @Column(name="username", length=20, unique=true)
     private String username;
 
     @Column(name="password")
