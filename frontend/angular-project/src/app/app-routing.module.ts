@@ -8,6 +8,10 @@ import { CompanyListBySectorComponent } from './sector/company-list-by-sector/co
 import { IpoDetailsComponent } from './ipo/ipo-details/ipo-details.component';
 import { CompanyDetailsComponent } from './company/company-details/company-details.component';
 import { CompanySearchComponent } from './company/company-search/company-search.component';
+import { StockExchangeListComponent } from './stockExchange/stock-exchange-list/stock-exchange-list.component';
+import { AddStockExchangeComponent } from './stockExchange/add-stock-exchange/add-stock-exchange.component';
+import { AdminCompanyListComponent } from './company/admin-company-list/admin-company-list.component';
+import { AdminAddCompanyComponent } from './company/admin-add-company/admin-add-company.component';
 
 const routes: Routes = [
   {path: 'signup', component: SignupComponent},
@@ -17,6 +21,10 @@ const routes: Routes = [
   {path: 'company/:id', component: CompanyDetailsComponent},
   {path: 'matchingCompanies', component: CompanySearchComponent},
   {path: 'ipos', component: IpoDetailsComponent},
+  {path: 'admin/stockExchangeList', component: StockExchangeListComponent},
+  {path: 'admin/addStockExchange', component: AddStockExchangeComponent},
+  {path: 'admin/companyList', component: AdminCompanyListComponent},
+  {path: 'admin/addCompany', component: AdminAddCompanyComponent},
   {path: '', redirectTo: '/login', pathMatch: 'full'}
 ];
 

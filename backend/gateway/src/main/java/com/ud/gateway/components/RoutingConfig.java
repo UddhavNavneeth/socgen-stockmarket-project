@@ -17,16 +17,16 @@ public class RoutingConfig {
         return builder.routes()
                 .route(r -> r.path("/user/**")
                         //Pre and Post Filters provided by Spring Cloud Gateway
-                        .filters(f -> f.filter(new SimpleFilter()))
-                        .uri("http://localhost:8085"))
+//                        .filters(f -> f.filter(new SimpleFilter()))
+                        .uri("http://localhost:8086"))
 
 
-//                .route(r -> r.path("/consumer/**")
+                .route(r -> r.path("/consumer/**")
 //                        //Pre and Post Filters provided by Spring Cloud Gateway
 //                        .filters(f -> f.addRequestHeader("second-request", "second-request-header")
 //                                .addResponseHeader("second-response", "second-response-header"))
-//                        .uri("http://localhost:8082/")
-//                        .id("consumerModule"))
+                        .uri("http://localhost:8082/")
+                        .id("consumerModule"))
                 .build();
     }
 

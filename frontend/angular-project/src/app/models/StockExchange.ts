@@ -1,7 +1,7 @@
 import { Address } from "../models/Address";
 
 export interface StockExchange {
-    id: number,
+    id?: number,
     name: string,
     brief: string,
     remarks: string,

@@ -1,0 +1,11 @@
+<div>
+    <h3>Stock Exchange List</h3>
+    <button routerLink="/admin/addStockExchange">add new exchange</button>
+    <ul *ngIf="stockExchangeList.length">
+        <li *ngFor="let stockExchange of stockExchangeList">
+            <p>{{stockExchange.name}}</p>
+            <p>{{stockExchange.brief}}</p>
+            <p>{{stockExchange.remarks}}</p>
+        </li>
+    </ul>
+</div>
