@@ -22,7 +22,7 @@ public class Company {
     @Column(name="brief", length=100)
     private String brief;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "sector_id")
     private Sector sector;
 

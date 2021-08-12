@@ -1,5 +1,6 @@
 package com.ud.sectorservice.controllers;
 
+import com.ud.sectorservice.dtos.CompanyDto;
 import com.ud.sectorservice.entities.Company;
 import com.ud.sectorservice.entities.Sector;
 import com.ud.sectorservice.services.SectorService;
@@ -8,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin
 @RestController
 @RequestMapping(value="/sector")
 public class SectorController {

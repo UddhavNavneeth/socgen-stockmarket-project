@@ -1,0 +1,16 @@
+<h2>Add Stock Exchange</h2>
+<form>
+    <p>name: <input type="text" name="name" [(ngModel)]="stockExchange.name"></p>
+    <p>brief: <input type="text" name="brief" [(ngModel)]="stockExchange.brief"></p>
+    <p>remarks: <input type="text" name="remarks" [(ngModel)]="stockExchange.remarks"></p>
+</form>
+<h3>Address</h3>
+<form>
+    <p>street 1: <input type="text" name="street1" [(ngModel)]="stockExchange.address.street1"></p>
+    <p>street 2: <input type="text" name="street2" [(ngModel)]="stockExchange.address.street2"></p>
+    <p>city: <input type="text" name="city" [(ngModel)]="stockExchange.address.city"></p>
+    <p>state: <input type="text" name="state" [(ngModel)]="stockExchange.address.state"></p>
+    <p>country: <input type="text" name="country" [(ngModel)]="stockExchange.address.country"></p>
+    <p>zipcode: <input type="text" name="zipcode" [(ngModel)]="stockExchange.address.zipcode"></p>
+</form>
+<button (click)="addStockExchange()">Add</button>

@@ -23,19 +23,18 @@ public class IpoDetailService {
     @Autowired
     private StockExchangeRepository stockExchangeRepository;
 
-    public IpoDetailDto getIpoDetailByCompanyId(Long companyId) {
-        return entityToDto(this.ipoDetailRepository.findIpoDetailByCompany_Id(companyId));
+    public IpoDetail getIpoDetailByCompanyId(Long companyId) {
+        return this.ipoDetailRepository.findIpoDetailByCompany_Id(companyId);
+    }
+
+    public List<IpoDetail> getOrderedIpoDetailList() {
+        return this.ipoDetailRepository.findAllByOrderByOpenDateTimeAsc();
     }
 
     // additional service methods not mentioned in project report
 
-    public List<IpoDetailDto> getIpoDetailList() {
-        List <IpoDetailDto> ipoDetailDtoList = new ArrayList<IpoDetailDto>();
-        this.ipoDetailRepository.findAll().forEach(ipoDetail -> {
-            ipoDetailDtoList.add(entityToDto(ipoDetail));
-        });
-
-        return ipoDetailDtoList;
+    public List<IpoDetail> getIpoDetailList() {
+        return this.ipoDetailRepository.findAll();
     }
 
     public IpoDetailDto addIpoDetail(IpoDetailDto ipoDetailDto) {

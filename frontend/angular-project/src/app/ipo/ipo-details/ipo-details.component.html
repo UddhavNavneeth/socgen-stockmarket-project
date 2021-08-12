@@ -1,0 +1,12 @@
+<div>
+    <ul *ngIf="ipoDetailList.length">
+        <li *ngFor="let ipoDetail of ipoDetailList">
+            <p routerLink="/company/{{ipoDetail.company.id}}">{{ipoDetail.company.name}}</p>
+            <p>{{ipoDetail.stockExchange.name}}</p>
+            <p>{{ipoDetail.pricePerShare}}</p>
+            <p>{{ipoDetail.totalNumberOfShares}}</p>
+            <p>{{ipoDetail.openDateTime}}</p>
+        </li>
+
+    </ul>
+</div>

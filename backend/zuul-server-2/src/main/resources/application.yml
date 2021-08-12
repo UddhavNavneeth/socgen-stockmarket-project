@@ -1,0 +1,12 @@
+server:
+  port: 8091
+
+spring:
+  application:
+    name: zuulserver
+
+zuul:
+  routes:
+    userService:
+      path: /user/**
+      url: http://localhost:8085/user/

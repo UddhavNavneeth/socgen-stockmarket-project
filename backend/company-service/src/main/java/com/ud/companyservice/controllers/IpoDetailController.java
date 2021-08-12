@@ -1,12 +1,14 @@
 package com.ud.companyservice.controllers;
 
 import com.ud.companyservice.dtos.IpoDetailDto;
+import com.ud.companyservice.entities.IpoDetail;
 import com.ud.companyservice.services.IpoDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin
 @RestController
 @RequestMapping(value = "/ipoDetail")
 public class IpoDetailController {
@@ -15,14 +17,19 @@ public class IpoDetailController {
     private IpoDetailService ipoDetailService;
 
     @GetMapping("/byCompanyId")
-    public IpoDetailDto getIpoDetailByCompanyId(@RequestParam Long companyId) {
+    public IpoDetail getIpoDetailByCompanyId(@RequestParam Long companyId) {
         return this.ipoDetailService.getIpoDetailByCompanyId(companyId);
+    }
+
+    @GetMapping("/ordered")
+    public List<IpoDetail> getOrderedIpoDetailList() {
+        return this.ipoDetailService.getOrderedIpoDetailList();
     }
 
     // additional routes not mentioned in the project document but are crud operations
 
     @GetMapping
-    public List<IpoDetailDto> getIpoDetailList() {
+    public List<IpoDetail> getIpoDetailList() {
         return this.ipoDetailService.getIpoDetailList();
     }
 

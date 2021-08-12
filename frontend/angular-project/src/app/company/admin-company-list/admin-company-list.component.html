@@ -1,0 +1,10 @@
+<div>
+    <h2>Company List</h2>
+    <ul *ngIf="companyList.length">
+        <li *ngFor="let company of companyList">
+            <p>{{company.name}}</p>
+            <p>{{company.ceo}}</p>
+            <p>{{company.turnover}}</p>
+        </li>
+    </ul>
+</div>

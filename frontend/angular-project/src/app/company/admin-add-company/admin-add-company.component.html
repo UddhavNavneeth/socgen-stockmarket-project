@@ -1,0 +1,11 @@
+<div>
+    <h2>Add Company</h2>
+    <form>
+        <p>name: <input type="text" name="name" [(ngModel)]="companyDto.name"></p>
+        <p>ceo: <input type="text" name="ceo" [(ngModel)]="companyDto.ceo"></p>
+        <p>turnover: <input type="text" name="turnover" [(ngModel)]="companyDto.turnover"></p>
+        <p>brief: <input type="text" name="brief" [(ngModel)]="companyDto.brief"></p>
+    </form>
+
+    <button (click)="addCompany()">add company</button>
+</div>
